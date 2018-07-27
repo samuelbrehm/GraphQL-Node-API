@@ -1,4 +1,4 @@
-import { BaseModelInterface } from './../interfaces/BaseModelInterface';
+import { BaseModelInterface } from '../interfaces/BaseModelInterface';
 import * as Sequelize from 'sequelize';
 import { ModelsInterface } from '../interfaces/ModelsInterface';
 

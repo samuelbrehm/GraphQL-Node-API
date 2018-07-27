@@ -1,5 +1,5 @@
-import { ModelsInterface } from './../interfaces/ModelsInterface';
-import { BaseModelInterface } from './../interfaces/BaseModelInterface';
+import { ModelsInterface } from '../interfaces/ModelsInterface';
+import { BaseModelInterface } from '../interfaces/BaseModelInterface';
 import * as Sequelize from 'sequelize';
 
 export interface PostAttributes {
