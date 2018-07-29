@@ -15,5 +15,42 @@ exports.userResolvers = {
                 return user;
             });
         }
+    },
+    Mutation: {
+        createUser: (parent, { input }, { db }, info) => {
+            return db.sequelize.transaction((t) => {
+                return db.User.create(input, { transaction: t });
+            });
+        },
+        updateUser: (parent, { id, input }, { db }, info) => {
+            id = parseInt(id);
+            return db.sequelize.transaction((t) => {
+                return db.User.findById(id).then((user) => {
+                    if (!user)
+                        throw new Error(`User with id ${id} not found`);
+                    return user.update(input, { transaction: t });
+                });
+            });
+        },
+        updateUserPassword: (parent, { id, input }, { db }, info) => {
+            id = parseInt(id);
+            return db.sequelize.transaction((t) => {
+                return db.User.findById(id).then((user) => {
+                    if (!user)
+                        throw new Error(`User with id ${id} not found`);
+                    return user.update(input, { transaction: t }).then((user) => !!user);
+                });
+            });
+        },
+        deleteUser: (parent, { id }, { db }, info) => {
+            id = parseInt(id);
+            return db.sequelize.transaction((t) => {
+                return db.User.findById(id).then((user) => {
+                    if (!user)
+                        throw new Error(`User with id ${id} not found`);
+                    return user.destroy({ transaction: t }).then(user => !!user);
+                });
+            });
+        }
     }
 };
