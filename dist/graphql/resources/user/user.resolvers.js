@@ -24,12 +24,19 @@ exports.userResolvers = {
             id = parseInt(id);
             return db.User.findById(id)
                 .then((user) => {
-                if (!user)
-                    throw new Error(`User with id ${id} not found`);
+                utils_1.throwError(!user, `User with id ${id} not found`);
                 return user;
             })
                 .catch(utils_1.handleError);
-        }
+        },
+        currentUser: composable_resolver_1.compose(...auth_resolver_1.authResolvers)((parent, args, { db, authUser }, info) => {
+            return db.User
+                .findById(authUser.id)
+                .then((user) => {
+                utils_1.throwError(!user, `User with id ${authUser.id} not found`);
+                return user;
+            }).catch(utils_1.handleError);
+        }),
     },
     Mutation: {
         createUser: (parent, { input }, { db }, info) => {

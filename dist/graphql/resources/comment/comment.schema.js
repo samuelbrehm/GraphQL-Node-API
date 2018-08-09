@@ -13,12 +13,11 @@ const commentTypes = `
     input CommentInput {
         comment: String!
         post: Int!
-        user: Int!
     }
 `;
 exports.commentTypes = commentTypes;
 const commentQueries = `
-    commentsByPost(postId: ID!, first: Int!, offset: Int!): [ Comment! ]!
+    commentsByPost(postId: ID!, first: Int, offset: Int): [ Comment! ]!
 `;
 exports.commentQueries = commentQueries;
 const commentMutations = `
