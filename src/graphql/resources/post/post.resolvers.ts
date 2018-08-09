@@ -1,7 +1,7 @@
 import { DbConnection } from '../../../interfaces/DbConnectionInterface';
 import { GraphQLResolveInfo } from 'graphql';
 import { PostInstance } from '../../../models/PostModel';
-import { Transaction } from '../../../../node_modules/@types/sequelize';
+import { Transaction } from 'sequelize';
 import { handleError, throwError } from '../../../utils/utils';
 import { compose } from "../../composable/composable.resolver";
 import { authResolvers } from "../../composable/auth.resolver";
